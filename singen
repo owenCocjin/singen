@@ -1,0 +1,47 @@
+#!/bin/python3
+from common import *
+from menu import *
+import sys, os, time
+
+'''-----------------------+
+|        FUNCTIONS        |
++-----------------------'''
+def usage():
+	print('''
+\033[33mUsage:\033[0m singen [-hv] [sinNumber]
+\tGenerates valid SIN numbers based on some user defined info
+\n\033[33mArguments:\033[0m
+\t-d,\t\tDetailed verification. Must be used with -v
+\t-g,\t\tGenerate a list of valid SINs based on user given data
+\t-h, --help\tPrints this screen
+\t-i,\t\tSet input file. You can pipe content from a file, but make sure it ends with 'y'
+\t-n,\t\tOnly print valid SINs when brute forcing
+\t-o,\t\tSet output file
+\t-v,\t\tValidate given SIN number. Pass each SIN as a seperate flag, or pipe them
+	''')
+	exit(1)
+
+'''------------------+
+|        MAIN        |
++------------------'''
+def main():
+	#--------VARIABLES--------#
+	#Process flags
+	#Generate list of valid SINs from user given info
+	if 'g' in flags or 'n' in flags or len(flags)==0:
+		g()
+
+	#Prints help
+	elif 'h' in flags or "help" in flags:
+		usage()
+
+	#Checks for validation and if detailed or not
+	elif 'v' in flags:
+		v()
+
+	else:
+		usage()
+
+
+if __name__=="__main__":
+	main()
